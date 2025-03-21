@@ -8,9 +8,9 @@ orders = LOAD '/user/maria_dev/input/ecommerce_data.csv'
         order_id:chararray, order_details:chararray, quantity:int, total_amount:double,
         product_id:chararray, product_name:chararray, category:chararray, description:chararray);
 
--- Store data into HBase
-STORE orders INTO 'hbase://My_Ecommerce:orders'
+-- Store data into HBase table 'my-ecommerce'
+STORE orders INTO 'hbase://my-ecommerce'
     USING org.apache.pig.backend.hadoop.hbase.HBaseStorage(
-        'Customer_Info:Name Customer_Info:Email Customer_Info:Address Customer_Info:Phone Customer_Info:PaymentMethod
-         Order_Details:OrderID Order_Details:Details Order_Details:Quantity Order_Details:TotalAmount
-         Product_Info:ProductID Product_Info:ProductName Product_Info:Category Product_Info:Description');
+        'customer_info:name customer_info:email customer_info:address customer_info:phone customer_info:payment_method
+         order_details:order_id order_details:order_details order_details:quantity order_details:total_amount
+         product_info:product_id product_info:product_name product_info:category product_info:description');
